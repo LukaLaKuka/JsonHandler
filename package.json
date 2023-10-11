@@ -1,5 +1,5 @@
 {
-  "name": "jsonhandler",
+  "name": "@tomhuel/jsonhandler",
   "version": "1.0.0",
   "description": "",
   "main": "./src/JsonHandler.js",
