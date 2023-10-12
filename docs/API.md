@@ -36,7 +36,7 @@ Returns a new Instance of `JsonHandler`
 
 ### Example
 
-```
+```javascript
 let myNewJsonHandler = JsonHandler.createJson("my/absolute/path");
 ```
 
@@ -54,7 +54,7 @@ This Function has no return.
 
 ### Example
 
-```
+```javascript
 let myJsonHandler = new JsonHandler("my/absolute/path");
 
 JsonHandler.deleteJson(myJsonHandler);
@@ -74,7 +74,7 @@ Returns a new Instance of `JsonHandler`
 
 ### Example
 
-```
+```javascript
 let myJsonHandler = new JsonHandler("my/absolute/path");
 ```
 
@@ -92,7 +92,7 @@ Returns an `Object` or an `Array<any>` depending of the content of the JSON File
 
 ### Example
 
-```
+```javascript
 let myJsonHandler = new JsonHandler("my/absolute/path");
 
 let data = myJsonHandler.getJson();
@@ -116,7 +116,7 @@ This Function has no return.
 
 ### Example
 
-```
+```javascript
 let myJsonHandler = new JsonHandler("my/absolute/path");
 
 myJsonHandler.pushElement("hello!", false); // Whoops! Here i didn't save it
@@ -142,7 +142,7 @@ This Function has no return.
 
 ### Example
 
-```
+```javascript
 let myJsonHandler = new JsonHandler("my/absolute/path");
 
 myJsonHandler.unshiftElement("hello!", false); // Whoops! Here i didn't save it
@@ -168,7 +168,7 @@ This Function has no return.
 
 ### Example
 
-```
+```javascript
 let myJsonHandler = new JsonHandler("my/absolute/path");
 
 myJsonHandler.pushElement("Hello");
@@ -196,7 +196,7 @@ This Function has no return.
 
 ### Example
 
-```
+```javascript
 let myJsonHandler = new JsonHandler("my/absolute/path");
 
 myJsonHandler.pushElement("Hello");
@@ -224,7 +224,7 @@ This Function has no return.
 
 ### Example
 
-```
+```javascript
 let myJsonHandler = new JsonHandler("my/absolute/path");
 
 myJsonHandler.pushElement("Hello");
@@ -256,7 +256,7 @@ This Function has no return.
 
 ### Example
 
-```
+```javascript
 let myJsonHandler = new JsonHandler("my/absolute/path");
 
 myJsonHandler.setProperty("name", "My Project");
@@ -285,7 +285,7 @@ This Function has no return.
 
 ### Example
 
-```
+```javascript
 let myJsonHandler = new JsonHandler("my/absolute/path");
 
 myJsonHandler.setProperty("name", "My Project");
@@ -313,7 +313,7 @@ This Function has no return.
 
 ### Example
 
-```
+```javascript
 let myJsonHandler = new JsonHandler("my/absolute/path");
 
 myJsonHandler.setJson({
@@ -338,7 +338,7 @@ Return a string that only can be `"Array"` or `"Object"`
 
 ### Example
 
-```
+```javascript
 let myJsonHandler = new JsonHandler("my/absolute/path");
 
 console.log(myJsonHandler.getJson()); // {}
@@ -354,7 +354,7 @@ console.log(myJsonHandler.JsonType()) // "Array"
 
 We highly recommend a little file of configuration for routes, this gonna make it easier to create JsonHandler Instances or Jsons Files.
 For example:
-```
+```javascript
 import * as path from "node:path"
 
 export myPaths = {
@@ -364,7 +364,7 @@ export myPaths = {
 ```
 Now we can create easier our JsonHandlers:
 
-```
+```javascript
 import { myPaths } from "../myPaths.js";
 
 let myJsonPath = path.join(myPaths.jsonDir, "test.json");
