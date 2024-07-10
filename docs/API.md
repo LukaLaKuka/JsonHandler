@@ -251,7 +251,7 @@ Get a property from the JSON's Root Object (if the root element is an Array, you
 
 ### Returns
 
-This Function has no return.
+This Function returns `any` type of data stored.
 
 ### Example
 
