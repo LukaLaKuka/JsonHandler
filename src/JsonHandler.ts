@@ -5,8 +5,15 @@ export class JsonHandler {
     protected file: any;
 
     constructor(path: string) {
-        this.path = path;
-        this.file = require(path);
+        this.path = '';
+        this.file = '';
+        if (!this.hasJsonExtension(path)) path = `${path}.json`;
+        if (!fs.existsSync(path)) {
+            return JsonHandler.createJson(path);
+        } else {
+            this.path = path;
+            this.file = JSON.parse(fs.readFileSync(path).toString());
+        }
     }
 
     /**
@@ -112,6 +119,16 @@ export class JsonHandler {
     }
 
     /**
+     * Get a property in the JSON Object
+     * @param propertyName Property Name to Set
+     * @param propertyValue Property Value to Set
+     * @param save Boolean to save or not the JSON File Directly
+     */
+    public getProperty(propertyName: string): any {
+        return this.file[propertyName];
+    }
+
+    /**
      * Set a property in the JSON Object
      * @param propertyName Property Name to Set
      * @param propertyValue Property Value to Set
@@ -166,7 +183,7 @@ export class JsonHandler {
      * @param filepath Absolute Path to create the File
      * @param isArray Content start with object or Array
      */
-    public static createJson(filepath: string, isArray: boolean = false): JsonHandler {
+    private static createJson(filepath: string, isArray: boolean = false): JsonHandler {
         let content: string = JSON.stringify({}, null, 4);
         if (isArray) {
             content = JSON.stringify([], null, 4);
@@ -215,5 +232,9 @@ export class JsonHandler {
         } catch (e) {
             return false;
         }
+    }
+
+    protected hasJsonExtension(path: string) {
+        return path.endsWith('.json');
     }
 }

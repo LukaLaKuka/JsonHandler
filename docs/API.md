@@ -11,6 +11,7 @@
 - [Drop Element in Json Array](#drop-element-in-json-array)
 - [Pop Element in Json Array](#pop-element-in-json-array)
 - [Shift Element in Json Array](#shift-element-in-json-array)
+- [Get Property in Json Object](#get-property-in-json-object)
 - [Set Property in Json Object](#set-property-in-json-object)
 - [Drop Property in Json Object](#drop-property-in-json-object)
 - [Set Json Data](#set-json-data)
@@ -21,14 +22,12 @@
 
 ## Create JSON Files
 
-This Static Function creates a new `JSON File` and returns a new Instance of `JsonHandler`:
+To create a new `JSON File` we have to use `JsonHandler`'s constructor.
 
 ### Params
 
-`filename`: `string`
-Absolute path to create the new Json File.
-
-`?isArray`: `boolean` The JSON gonna be created with a `{}` in the root file by default. If we set `isArray` with `true`, the file gonna be created with a `[]` in the root file.
+`path`: `string`
+Absolute or relative path to create the new Json File. If path doesn't end with `.json`, the `path` will be concated with `.json` extension.
 
 ### Returns
 
@@ -37,7 +36,11 @@ Returns a new Instance of `JsonHandler`
 ### Example
 
 ```javascript
-let myNewJsonHandler = JsonHandler.createJson("my/absolute/path");
+// If file ./hello.json it's not created, creates a new one.
+let myNewJsonHandler = new JsonHandler('hello');
+
+// If file 
+let myNewJsonHandler = new JsonHandler('ping.json');
 ```
 
 ## Deleting JSON Files
@@ -66,7 +69,7 @@ Constructor of the JsonHandler Class:
 
 ### Params
 
-`path`: `string` Absolute path of the __existing__ `JSON File`.
+`path`: `string` Absolute or relative path of the __existing__ `JSON File`.
 
 ### Returns
 
@@ -236,6 +239,32 @@ myJsonHandler.pushElement("World!");
 myJsonHandler.shiftElement(); 
 
 console.log(myJsonHandler.getJson()); // ["New", "World!"]
+```
+
+## Get Property in Json Object
+
+Get a property from the JSON's Root Object (if the root element is an Array, you have to use [pushElement](#push-element-in-array)).
+
+### Params
+
+`propertyName`: `string` Property's name
+
+### Returns
+
+This Function has no return.
+
+### Example
+
+```javascript
+let myJsonHandler = new JsonHandler("my/absolute/path");
+
+myJsonHandler.setJson({
+    hello: "world",
+    ping: "pong"
+});
+
+myJsonHandler.getProperty('hello'); // 'world'
+myJsonHandler.getProperty('name'); // undefined
 ```
 
 ## Set Property in Json Object

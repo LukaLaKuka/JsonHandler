@@ -4,8 +4,17 @@ exports.JsonHandler = void 0;
 var fs = require("node:fs");
 var JsonHandler = /** @class */ (function () {
     function JsonHandler(path) {
-        this.path = path;
-        this.file = require(path);
+        this.path = '';
+        this.file = '';
+        if (!this.hasJsonExtension(path))
+            path = "".concat(path, ".json");
+        if (!fs.existsSync(path)) {
+            return JsonHandler.createJson(path);
+        }
+        else {
+            this.path = path;
+            this.file = JSON.parse(fs.readFileSync(path).toString());
+        }
     }
     /**
      * Returns the JSON content to be able to work with it
@@ -101,6 +110,15 @@ var JsonHandler = /** @class */ (function () {
         catch (error) {
             console.error(error.message);
         }
+    };
+    /**
+     * Get a property in the JSON Object
+     * @param propertyName Property Name to Set
+     * @param propertyValue Property Value to Set
+     * @param save Boolean to save or not the JSON File Directly
+     */
+    JsonHandler.prototype.getProperty = function (propertyName) {
+        return this.file[propertyName];
     };
     /**
      * Set a property in the JSON Object
@@ -203,6 +221,9 @@ var JsonHandler = /** @class */ (function () {
         catch (e) {
             return false;
         }
+    };
+    JsonHandler.prototype.hasJsonExtension = function (path) {
+        return path.endsWith('.json');
     };
     return JsonHandler;
 }());
